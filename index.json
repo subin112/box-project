@@ -1,0 +1,37 @@
+const items = document.querySelectorAll('.item');
+const firstBox = document.querySelector('.first-box');
+const secondBox = document.querySelector('.second-box');
+const thirdBox = document.querySelector('.third-box');
+
+items.forEach(item => {
+    item.addEventListener('click', () => {
+        // Create a new span element for the clicked item
+        const newItem = document.createElement('span');
+        newItem.textContent = item.textContent; // Set the text content of the span
+        newItem.style.backgroundColor = item.style.backgroundColor; // Set the background color
+
+        // Append the new span element to the first-box
+        firstBox.appendChild(newItem);
+
+        // Hide the clicked item in the container
+        item.style.display = 'none';
+    });
+});
+
+firstBox.addEventListener('click', () => {
+    // Check if there are any elements in the first-box
+    const lastElement = firstBox.lastElementChild;
+    if (lastElement) {
+        // Remove the last element from the first-box and add it to the second-box
+        secondBox.appendChild(lastElement);
+    }
+});
+
+secondBox.addEventListener('click', () => {
+    // Check if there are any elements in the second-box
+    const lastElement = secondBox.lastElementChild;
+    if (lastElement) {
+        // Remove the last element from the second-box and add it to the third-box
+        thirdBox.appendChild(lastElement);
+    }
+});
